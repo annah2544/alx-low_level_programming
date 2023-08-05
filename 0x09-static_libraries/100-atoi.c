@@ -1,19 +1,28 @@
 #include "main.h"
-#include <stddef.h>
 /**
- * _strchr - Entry point
- * @s: input
- * @c: input
- * Return: Always 0 (Success)
+ * _atoi - convert a string into an integer.
+ *
+ * @s: the string to use.
+ *
+ * Return: integer.
  */
-char *_strchr(char *s, char c)
-{
-	int i = 0;
 
-	for (; s[i] >= '\0'; i++)
+int _atoi(char *s)
+{
+	int sign = 1, i = 0;
+	unsigned int res = 0;
+
+	while (!(s[i] <= '9' && s[i] >= '0') && s[i] != '\0')
 	{
-		if (s[i] == c)
-			return (&s[i]);
+		if (s[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	return (0);
+	while (s[i] <= '9' && (s[i] >= '0' && s[i] != '\0'))
+	{
+		res = (res * 10) + (s[i] - '0');
+		i++;
+	}
+	res *= sign;
+	return (res);
 }
